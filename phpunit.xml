@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit
+	bootstrap="./bootstrap.php"
+	colors="true"
+    stopOnFailure="false"
+    syntaxCheck="false"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+>
+    <php>
+        <ini name="memory_limit" value="2000M"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="controllers">
+            <directory>test/Controllers/</directory>
+        </testsuite>
+        <testsuite name="middleware">
+            <directory>test/Middleware/</directory>
+        </testsuite>
+        <testsuite name="models">
+            <directory>test/Models/</directory>
+        </testsuite>
+        <testsuite name="services">
+            <directory>test/Sevices/</directory>
+        </testsuite>
+    </testsuites>
+
+    <logging>
+        <log type="coverage-clover" target="log/clover.xml"/>
+    </logging>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src</directory>
+            <exclude>
+                <directory>./test</directory>
+                <directory>./vendor</directory>
+                <directory>./public</directory>
+                <directory>./src/Views</directory>
+				<file>./src/Application.php</file>
+				<file>./src/Dependencies.php</file>
+				<file>./src/Routes.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

@@ -1,0 +1,25 @@
+{
+    "name": "ulsmith/papi",
+    "authors": [
+        {
+            "name": "Paul Smith",
+            "email": "p@ulsmith.net"
+        }
+    ],
+    "require": {
+		"slim/slim": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Papi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Papi\\Test\\": "test/"
+        }
+    }
+}

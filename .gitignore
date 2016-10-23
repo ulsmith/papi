@@ -1,0 +1,5 @@
+vendor/
+node_modules/
+log/
+composer.lock
+docker-compose.yml
