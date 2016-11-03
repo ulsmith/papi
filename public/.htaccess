@@ -1,0 +1,34 @@
+IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
+Options -Indexes
+
+<Limit GET POST>
+order deny,allow
+deny from all
+allow from all
+</Limit>
+
+<Limit PUT DELETE>
+order deny,allow
+deny from all
+</Limit>
+
+<Files ~ "\.sqlite$">
+Order allow,deny
+Deny from all
+</Files>
+
+AddType video/ogv .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm
+AddType audio/ogg .ogg
+AddType audio/mp3 .mp3
+AddType audio/m4a .m4a
+AddType image/svg+xml svg
+
+DirectoryIndex index.html index.htm index.php index default.html default.htm default.php default
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?path=$1 [L,QSA]

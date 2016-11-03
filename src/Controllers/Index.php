@@ -14,13 +14,16 @@ class Index
 {
     /** @var Slim\Container slims DI container */
     private $container;
+	/** @var Papi\Services\AuthenticationService authentication */
+	private $auth;
     /** @var Example sample example service injected */
     private $example;
 
     public function __construct(Container $container)
     {
         $this->container = $container;
-		$this->example = $container->get('Example');
+		$this->auth = $container->get('AuthenticationService');
+		$this->example = $container->get('ExampleService');
     }
 
 	/**
@@ -32,6 +35,13 @@ class Index
 	 */
     public function index(Request $request, Response $response, $args)
     {
-		return $response->withJson(['status' => 'success', 'data' => 'some data...']);
+		$data = [
+			'status' => 'success',
+			'message' => 'you hit the index page... service test:'.$this->example->test().' if logged in you will see user deails, to login POST request to /account/login with JSON user=test password=test, to logout GET to /account/logout',
+		];
+
+		if ($this->auth->isLoggedIn()) $data['data'] = $this->auth->getLoggedIn();
+
+		return $response->withJson($data);
     }
 }

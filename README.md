@@ -4,9 +4,11 @@ PHP API base using slim 3 configured in a MVC setup with dependency management, 
 
 Offers a nice simple small base to start building your API in one fo the smallest frameworks around, supplying you with a basic structure based around MVC with models, controllers, middleware and services.
 
-This comes without views, as an API will not require any direct views in PHP (unles you want to add an explorer, but then thats up to you). If you are wanting to create an application using php views (and not handle the UI to your application seperately), I recommend looking at ulsmith/papp.
+This comes without views, as an API will not require any direct views in PHP (unles you want to add an explorer, but then thats up to you). If you are wanting to create an application using php views (and not handle the UI to your application seperately), I recommend looking at ulsmith/papi.
 
 __Controllers/:__ Your starting point as a developer, your endpoint as matched to your URL path (configured in routes).
+
+__Library/:__ Any 3rd part tools you add that are not composer installs, mainly your own library files.
 
 __Middleware/:__ Injected as a dependency, alter all/some/one incomming or outgoing requests, with one piece of middleware pushing its output onto the next in the stack.
 
@@ -71,6 +73,6 @@ To test PAPI either install php unit globally and run phpunit from the papi root
 # get containers > docker ps
 docker exec <container id> ./vendor/bin/phpunit
 
-# or run locally from papp root (requires phpunit and php-cli and php-xdebug installed)
+# or run locally from papi root (requires phpunit and php-cli and php-xdebug installed)
 phpunit
 ```
