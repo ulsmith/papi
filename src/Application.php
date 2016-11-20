@@ -57,6 +57,7 @@ class Application extends App
 		$this->session->start();
 
 		// middleware
+		$this->add($this->container->get("CorsMiddleware"));
 		$this->add($this->container->get("AuthenticationMiddleware"));
 
 		// run application

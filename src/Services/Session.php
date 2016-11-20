@@ -12,20 +12,12 @@ use Papi\Library\SecureSessionHandler;
  */
 class Session
 {
-	/** @const LIFETIME set to one day default but changable via env vars SESSION_LIFETIME */
-    const LIFETIME = 86400;
-	/** @const KEY the key to use for default encrytion if none set in env vars SESSION_KEY */
-	const KEY = '4hfjHuiUEH74fdsfdskj89Hhudy';
-
     public function __construct()
     {
-		$lifetime = getenv('SESSION_LIFETIME') ? (int) getenv('SESSION_LIFETIME') : self::LIFETIME;
-		$key = getenv('SESSION_KEY') ? getenv('SESSION_KEY') : self::KEY;
-
         // server/client should keep session data for 1 day, also set secure handler by default
-        ini_set('session.gc_maxlifetime', $lifetime);
-		session_set_cookie_params($lifetime);
-		session_set_save_handler(new SecureSessionHandler($key), true); // 48 chars max
+        ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
+		session_set_cookie_params(SESSION_LIFETIME);
+		session_set_save_handler(new SecureSessionHandler(SESSION_KEY), true); // 48 chars max
     }
 
 	/**

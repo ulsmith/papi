@@ -2,6 +2,7 @@
 
 use Slim\Container;
 
+use Papi\Middleware\Cors as CorsMiddleware;
 use Papi\Middleware\Authentication as AuthenticationMiddleware;
 
 use Papi\Services\Session as SessionService;
@@ -12,6 +13,11 @@ use Papi\Services\Example as ExampleService;
  * Dependencies
  * Load all system dependencies from a single location using slims DI container
  */
+
+// Papi\Middleware\Cors
+$this->container["CorsMiddleware"] = function (Container $container) {
+	return new CorsMiddleware($container);
+};
 
 // Papi\Middleware\Authentication
 $this->container["AuthenticationMiddleware"] = function (Container $container) {
