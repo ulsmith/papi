@@ -20,14 +20,12 @@ final class Cors
 
     public function __invoke(Request $request, Response $response, callable $next)
     {
-		$environment = $this->container->get("Environment");
-
 		$response = $next($request, $response);
 
 		// Basic checks that referer matches whitelist, maybe do some more on this
 		if (!empty($_SERVER['HTTP_ORIGIN']) && !empty($_SERVER["HTTP_HOST"]))
 		{
-			$domains = explode(',', str_replace(' ', '', $environment['CORS_WHITELIST']));
+			$domains = explode(',', str_replace(' ', '', getenv('CORS_WHITELIST')));
 			$parsedUrl = parse_url($_SERVER["HTTP_ORIGIN"]);
 			$origin = "{$parsedUrl['scheme']}://{$parsedUrl['host']}".(!empty($parsedUrl['port']) ? ":{$parsedUrl['port']}" : '');
 
